@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Basics</title>
+</head>
+<body>
+<script>
+var MyObjConstructor = function(name){
+  var myPrivateVar = "Hello"; // just to show that it is hard to see this private var easily
+  this.name = name; // but you can see the name!
+  this.method = function(){
+    console.log( "I am a method");
+  };
+}
+var obj1 = new MyObjConstructor('object1');
+var obj2 = new MyObjConstructor('object2');
+console.log(obj1);
+    function pushPop(){
+        let x = [];
+        x.push('coding', 'dojo', 'rocks');
+        x.pop();
+        console.log(x);
+    }
+    pushPop();
+
+    function constantVal(){
+        const y = [];
+        y.push(88);
+        console.log(y);
+    }
+    constantVal();
+
+    function array(){
+        let z = [9, 10, 6, 5, -1, 20, 13, 2];
+        for(var i=0; i<z.length-1;i++){
+            console.log(z[i]);
+        }
+    }
+    array();
+
+    function names(){
+        let name = ['Kadie', 'Joe', 'Fritz', 'Pierre', 'Alphonso'];
+        for(var i=0; i<name.length-1;i++){
+            console.log(`length of ${i} value ${name[i].length}`);
+            if(name[i].length === 5){
+                console.log(name[i]);
+            }
+        }
+    }
+    names();
+
+    function yell(string){
+        return string.toUpperCase();
+    }
+    console.log(yell("hello"));
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Javascript Objects</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        let students = [
+            {name: 'Remy', cohort: 'Jan'},
+            {name: 'Genevieve', cohort: 'March'},
+            {name: 'Chuck', cohort: 'Jan'},
+            {name: 'Osmund', cohort: 'June'},
+            {name: 'Nikki', cohort: 'June'},
+            {name: 'Boris', cohort: 'June'}
+        ];
+        for(let i in students){
+            console.log(`Name: ${students[i].name}, Cohort: ${students[i].cohort}`);
+        }
+
+        let users = {
+            employees: [
+                {'first_name':  'Miguel', 'last_name' : 'Jones'},
+                {'first_name' : 'Ernie', 'last_name' : 'Bertson'},
+                {'first_name' : 'Nora', 'last_name' : 'Lu'},
+                {'first_name' : 'Sally', 'last_name' : 'Barkyoumb'}
+            ],
+            managers: [
+               {'first_name' : 'Lillian', 'last_name' : 'Chambers'},
+               {'first_name' : 'Gordon', 'last_name' : 'Poe'}
+            ]
+        };
+
+        for(let key in users){
+            console.log(key.toUpperCase());
+            for(let k in users[key]){
+                let first = users[key][k].first_name.toUpperCase();
+                let last = users[key][k].last_name.toUpperCase();
+                k++;
+                let len = first.length + last.length;
+                console.log(`${k} - ${first} ${last} - ${len}`);
+                k--;
+            }
+        }
+        </script>
+    </body>
+</html>

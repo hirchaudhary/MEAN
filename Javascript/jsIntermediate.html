@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Javascipt Intermediate</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function starString(number){
+                let star = "*";
+                return star.repeat(number);
+            }
+            console.log(starString(50));
+
+            function drawStars(starArray){
+                for(let i=0; i<starArray.length;i++){
+                    if(typeof starArray[i] == 'string'){
+                        console.log(starArray[i][0].repeat(starArray[i].length));
+                    }else{
+                        console.log(starString(starArray[i]));
+                    }
+                }
+            }
+            drawStars([1,2,3,"heer",5,6,"chaudhary",8,9]);
+        </script>
+    </body>
+</html>
