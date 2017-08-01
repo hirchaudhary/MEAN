@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninja Class</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function Ninja(name){
+                var speed = 3;
+                var strength = 3;
+                this.name = name;
+                this.health = 100;
+                this.getSpeed = function(){
+                    return speed;
+                }
+                this.getStrength = function(){
+                    return strength;
+                }
+                this.setSpeed = function(speed){
+                    this.speed = speed;
+                }
+                this.setStrength = function(strength){
+                    this.strength = strength;
+                }
+            }
+            Ninja.prototype.sayName = function(){
+                console.log(`Name: ${this.name}`);
+            }
+            Ninja.prototype.showStats = function(){
+                console.log(`Health: ${this.health} \nSpeed: ${this.getSpeed()} \nStrength: ${this.getStrength()}`);
+            }
+            Ninja.prototype.drinkShake = function(){
+                this.health += 10;
+            }
+
+            let shinobi = new Ninja("Shinobi");
+            shinobi.sayName();
+            shinobi.showStats();
+            shinobi.drinkShake();
+            shinobi.showStats();
+
+        </script>
+    </body>
+</html>
