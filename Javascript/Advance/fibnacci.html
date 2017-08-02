@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Fibnacci</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        function fib() {
+            let previous = 0;
+            let current = 1;
+            let sum = 0;
+            function nacci() {
+                sum = previous+current;
+                previous = current;
+                current = sum;
+                console.log(sum);
+                return sum;
+            }
+            return nacci;
+        }
+        var fibCounter = fib();
+        fibCounter()
+        fibCounter()
+        fibCounter()
+        fibCounter()
+        </script>
+    </body>
+</html>

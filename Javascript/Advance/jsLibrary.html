@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Javascript Library</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        let _ = {
+            map: function(array, callMap) {
+                for(let i=0; i<array.length; i++){
+                    array[i] = callMap(array[i]);
+                }
+                return array;
+            },
+            reduce: function(array, callReduce) {
+                let sum = 0;
+                for (var i = 0; i < array.length; i++) {
+                    sum += callReduce(array[i], i)
+                }
+                return sum;
+            },
+            find: function(array, callFind) {
+                for (var i = 0; i < array.length; i++) {
+                    if(callFind(array[i]) == true){
+                        return array[i];
+                    }
+                }
+            },
+            filter: function(array, callFilter) {
+                let newArr = [];
+                for(let i=0; i<array.length; i++){
+                    if(callFilter(array[i]) == true){
+                        newArr.push(array[i]);
+                    }
+                }
+                return newArr;
+            },
+            reject: function(array, callReject) {
+                let newArr = [];
+                for(let i=0; i<array.length; i++){
+                    if(callReject(array[i]) == false){
+                        newArr.push(array[i]);
+                    }
+                }
+                return newArr;
+            }
+        }
+        let evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+        console.log(evens);
+        let map = _.map([1, 2, 3], function(num){ return num * 3; });
+        console.log(map);
+        var sum = _.reduce([1, 2, 3], function(memo, num){ return memo + num; }, 0);
+        console.log(sum);
+        var findFirst = _.find([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+        console.log(findFirst);
+        var odds = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+        console.log(odds);
+        </script>
+    </body>
+</html>
