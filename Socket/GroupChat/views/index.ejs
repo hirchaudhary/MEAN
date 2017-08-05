@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Group Chat!</title>
+        <link rel="icon" href="mess.gif" type="image/gif">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript">
+         $(document). ready(function (){
+            var socket  = io.connect();
+
+            socket.on('connect_id', function(data){
+                if(data.allUsers[data.id] === undefined){
+                    var person = prompt("Please enter your name:");
+                }
+                while(person.length < 1){
+                    var person = prompt("Please enter your name:");
+                }
+                socket.emit("page_load", {name: person, id: data.id});
+            })
+
+            socket.on('new_user', function (data){
+                $('#new').html(`${data.name} has joined the chat!`);
+            })
+
+            $( 'button').click(function (){
+                let text = $('#message').val();
+                if(text.length < 1){return ;}
+                socket.emit("send_message", { message: text })
+            })
+
+            socket.on('all_texts', function (data){
+                for(let i=0; i<data.length; i++){
+                    $('#messages').append(`<p>${data[i]}</p>`);
+                }
+            })
+
+            socket.on('new_message', function(data){
+                $('#messages').append(`<p>${data.message}</p>`)
+            })
+        })
+    </script>
+    </head>
+    <body>
+        <h3 id="welcome"></h3>
+
+        <div id="new">
+
+        </div>
+        <div id="messages">
+
+        </div>
+        <div id="send">
+            <textarea type="text" id="message" value=""></textarea>
+            <button>Send Message</button>
+        </div>
+    </body>
+</html>
