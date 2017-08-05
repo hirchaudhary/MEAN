@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+         $(document). ready(function (){
+            var socket  = io.connect();
+            $( '#result').submit(function (){
+                socket.emit( "posting_form", {
+                    name: $('#name').val(),
+                    location: $('#location').val(),
+                    language: $('#language').val(),
+                    description: $('#description').val()
+                })
+                return false;
+            });
+            socket.on( 'updated_message', function (data){
+                console.log(data.response);
+                $('#res').html("You emitted the following information to the server: " + JSON.stringify(data.response));
+            });
+            socket.on( 'random_number', function (data){
+                console.log(data.lucky);
+                $('#detail').html("Your lucky number emmited by the server is:" + JSON.stringify(data.lucky));
+            });
+        })
+    </script>
+</head>
+<body>
+    <form id="result">
+        <table>
+            <tr>
+                <th style="text-align:center" colspan="2"> My Registration Form </th>
+            </tr>
+            <tr>
+                <td><label for="name">Name:</label></td>
+                <td><input type="text" name="name" id="name"></td>
+            </tr>
+            <tr>
+                <td><label>Location:</label></td>
+
+                <td><select name="location" id="location">
+                    <option value="Seattle">Seattle</option>
+                    <option value="Washington DC">Washington DC</option>
+                    <option value="Dallas">Dallas</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label>Favorite Language:</label></td>
+                <td><select name="language" id="language" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span>
+                    <option value="Javascript" class="dropdown-menu">Javascript</option>
+                    <option value="Java" class="dropdown-menu" >Java</option>
+                    <option value="PHP" class="dropdown-menu">Php</option>
+                    <option value="Python" class="dropdown-menu">Python</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><label for="desc">A short descriprion about yourself:</label></td>
+            </tr>
+            <tr>
+                <td colspan="2"><textarea name="description" rows="4" cols="40" id="description"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" id="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <div id="detail" style="background-color:silver; width:500px; ">
+
+    </div>
+    <div id="res" style="background-color:silver; width:500px; ">
+
+    </div>
+</body>
+</html>
