@@ -1,0 +1,107 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red63\green63\blue63;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c100000\c100000\c100000;\cssrgb\c31373\c31373\c31373;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww27420\viewh7920\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ri-721\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 1. \expnd0\expndtw0\kerning0
+Create a database called\'a0'my_first_db'.\kerning1\expnd0\expndtw0 \
+> use my_first_db\
+\
+2. \expnd0\expndtw0\kerning0
+Create\'a0students\'a0collection.\kerning1\expnd0\expndtw0 \
+> db.createCollection(\'93students\'94)\
+\
+3 & 4. \expnd0\expndtw0\kerning0
+Create 5 students with the appropriate info.\kerning1\expnd0\expndtw0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ri-721\pardirnatural\partightenfactor0
+\cf2 \CocoaLigature0 > db.students.insert(\{name: "Hiral", home_state: "Virginia", lucky_number: 3, birthday: \{month:10, day:7, year:2017\}\})\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 > db.students.insert(\{name: "Harish", home_state: "Virginia", lucky_number: 10, birthday: \{month:4, day:18, year:1986\}\})\
+> db.students.insert(\{name: "Bob", home_state: "Virginia", lucky_number: 3, birthday: \{month:5, day:18, year:1987\}\})\
+> db.students.insert(\{name: "Bobby", home_state: "Virginia", lucky_number: 7, birthday: \{month:5, day:10, year:1987\}\})\
+> db.students.insert(\{name: "Tom", home_state: "California", lucky_number: 4, birthday: \{month:10, day:1, year:1981\}\})\
+\
+\
+5.\CocoaLigature1  \expnd0\expndtw0\kerning0
+Get all students.\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+> db.students.find()\
+\
+6. \expnd0\expndtw0\kerning0
+\CocoaLigature1 Retrieve all students who are from California (San Jose Dojo) or Washington (Seattle Dojo).\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+> db.students.find(\{$or: \{home_state: "California\'94\}, \{home_state: \'93Washington\}\})\
+\
+7.\expnd0\expndtw0\kerning0
+\CocoaLigature1 Get all students whose lucky number is:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\ri200\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \'97\'97-> \expnd0\expndtw0\kerning0
+greater than 3\
+\pard\tx720\pardeftab720\ri200\partightenfactor0
+\cf2 > \kerning1\expnd0\expndtw0 \CocoaLigature0 db.students.find(\{lucky_number: \{$gt : 3\}\})\
+\expnd0\expndtw0\kerning0
+\CocoaLigature1 \'97\'97->less than or equal to 10\
+> \kerning1\expnd0\expndtw0 \CocoaLigature0 db.students.find(\{lucky_number: \{$lte : 10\}\})\
+\expnd0\expndtw0\kerning0
+\CocoaLigature1 \'97\'97> between 1 and 9 (inclusive)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.find(\{$and: [\{lucky_number: \{$lte : 9\}\}, \{lucky_number: \{$gte:1\}\}]\})\
+\
+8.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Add a field to each student collection called\'a0'interests'\'a0that is an ARRAY. \'a0It should contain the following entries:\'a0'coding', 'brunch', 'MongoDB'.\'a0Do this in ONE operation.\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+> db.students.update(\{$set: \{interest: ["coding", "brunch", "MongoDB"]\}\})\
+\
+9.\CocoaLigature1  \expnd0\expndtw0\kerning0
+Add some unique interests for each particular students into each of their interest arrays.\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+> db.students.update(\{name: "Hiral"\}, \{$push: \{interest: "running"\}\})\
+> db.students.update(\{name: \'93Harish\'94\}, \{$push: \{interest: \'93walking\'94\}\})\
+> db.students.update(\{name: \'93Bob\'94\}, \{$push: \{interest: \'93reading\'94\}\})\
+> db.students.update(\{name: \'93Tom\'94\}, \{$push: \{interest: \'93movies\'94\}\})\
+> db.students.update(\{name: \'93Bobby\'94\}, \{$push: \{interest: "running"\}\})\
+\
+10.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Add the interest 'taxes' into someone's interest array.\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.update(\{name: "Harish"\}, \{$push: \{interest: "taxes"\}\})\
+\
+11.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Remove the 'taxes' interest you just added.\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.update(\{name:"Hiral"\}, \{$pop: \{interest: 1\}\})\
+\
+12.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Remove all students who are from California (or Washington).\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+> db.students.remove(\{$or: \{home_state: "California\'94\}, \{home_state: \'93Washington\'94\}\})\
+\
+13.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Remove a student by name.\'a0\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.remove(\{name: "Bobby"\})\
+\
+14.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Remove a student whose lucky number is greater than 5 (JUST ONE)\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.remove(\{lucky_number: \{$gt : 5\}\}, true)\
+\
+15.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Add a field to each student collection called 'number_of_belts' and set it to 0.\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.update(\{$set: \{number_of_belts:0\}\})\
+\
+16.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Increment this field by 1 for all students in Washington (Seattle Dojo).\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.update(\{home_state:\'94Washington\'94\}, \{$inc: \{number_of_belt:1\}\})\
+\
+17.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Rename the 'number_of_belts' field to 'belts_earned'\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+> db.students.update(\{\}, \{$rename: \{"number_of_belts":"belts_earned"\}\})\
+\
+18.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Remove the 'lucky_number' field.\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.update(\{\}, \{$unset: \{lucky_number:""\}\}, \{multi:true\})\
+\
+19.\CocoaLigature1 	\expnd0\expndtw0\kerning0
+Add a 'updated_on' field, and set the value as the current date.\
+\kerning1\expnd0\expndtw0 \CocoaLigature0 > db.students.update(\{\}, \{$currentDate:\{updated_on:true\}\},\{multi:true\})\
+\
+\
+}
