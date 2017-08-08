@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mongoose</title>
+    </head>
+    <body>
+        <h1>Mongoose loves you!!</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Legs</th>
+                <th>Color</th>
+                <th>Action</th>
+            </tr>
+            <% for(let mon in animals) { %>
+                <tr>
+                    <td><a href="/about/<%=animals[mon].id %>"><strong><%=animals[mon].name%></strong></a></td>
+                    <td><%=animals[mon].legs%></td>
+                    <td><%=animals[mon].color%></td>
+                    <td><a href="/edit/<%=animals[mon].id %>"><strong>Edit</strong></a><a href="/delete/<%=animals[mon].id %>"><strong>Delete</strong></a></td>
+                </tr>
+            <% } %>
+        </table>
+        <a href="/new"><strong>Add new</strong></a>
+    </body>
+</html>

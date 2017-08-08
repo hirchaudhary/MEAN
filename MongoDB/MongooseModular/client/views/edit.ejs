@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit Animal</title>
+    </head>
+    <body>
+        <form action="/edit/<%=animal.id%>" method="post">
+            Mongoose Name: <input type="text" name="name" value="<%=animal.name%>"><br>
+            How many Legs? : <input type="text" name="legs" value="<%=animal.legs%>"></textarea><br>
+            What color? : <input type="text" name="color" value="<%=animal.color%>"><br>
+            <input type="submit" value="Add Mongoose">
+        </form>
+    </body>
+</html>
