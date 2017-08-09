@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login And Registration</title>
+    </head>
+    <body>
+        <form action="/register" method="post">
+            First Name: <input type="text" name="firstname"><br>
+            Last Name: <input type="text" name="lastname"><br>
+            Email: <input type="text" name="email"><br>
+            Password: <input type="password" name="password"><br>
+            Confirm Password: <input type="password" name="passwordconfirm"><br>
+            Birthdate: <input type="date" name="birthdate"><br>
+            <input type="submit" value="Register">
+        </form>
+        <a href="/login"><button>Go to Login Page</button></a>
+
+        <% if(typeof(errors) != 'undefined'){%>
+            <%=errors%>
+            <% for(var error in errors){ %>
+                <p><%=errors[error].message %></p>
+            <%}%>
+        <%}%>
+
+
+        <% if(typeof(madeErrors) != 'undefined'){%>
+            <% for(error in madeErrors){ %>
+                <p><%=madeErrors[error].message %></p>
+            <%}%>
+        <%}%>
+    </body>
+</html>

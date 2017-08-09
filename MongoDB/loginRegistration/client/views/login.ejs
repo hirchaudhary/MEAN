@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+    </head>
+    <body>
+        <form action="/login" method="post">
+            <% if(typeof(response) != 'undefined'){%>
+                Email: <input type="text" name="email" value="<%=response.email%>"><br>
+            <%}else{%>
+                Email: <input type="text" name="email"><br>
+            <%}%>
+            Password: <input type="password" name="password"><br>
+            <input type="submit" value="Login">
+        </form>
+        <a href="/"><button>Go to Register Page</button></a>
+        <% if(typeof(madeErrors) != 'undefined'){%>
+            <% for(error in madeErrors){ %>
+                <p><%=madeErrors[error].message %></p>
+            <%}%>
+        <%}%>
+
+    </body>
+</html>
