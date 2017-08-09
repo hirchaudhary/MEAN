@@ -1,0 +1,19 @@
+<div>
+    <h2>{{title}}</h2>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Importance</th>
+            <th>Subject</th>
+            <th>Content</th>
+        </tr>
+        <tr *ngFor="let dojo of dojos">
+            <td>{{dojo.email}}</td>
+            <td *ngIf="dojo.importance">High</td>
+            <td *ngIf="!dojo.importance">Low</td>
+            <td>{{dojo.subject}}</td>
+            <td>{{dojo.content}}</td>
+        </tr>
+    </table>
+    
+</div>
