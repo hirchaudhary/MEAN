@@ -7,7 +7,7 @@
     <body>
         <h2>{{title}}</h2>
         <div *ngFor="let col of colors" [ngStyle]="{ 
-            'background-color':'rgb('+col.color+')',
+            'background-color':col.color,
             'width':col.size,
             'height':'200px',
             'margin-right':'3px',
