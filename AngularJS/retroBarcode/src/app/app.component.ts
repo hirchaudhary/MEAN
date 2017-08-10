@@ -5,7 +5,7 @@ let rand = function(){
 }
 
 let randSize = function(){
-  return Math.floor(Math.random()*50);
+  return Math.floor(Math.random()*15);
 }
 
 @Component({
