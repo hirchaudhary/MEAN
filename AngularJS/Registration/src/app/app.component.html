@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <br>
+    <div *ngIf='bool' class="green">
+        <span>
+            Thank you for registering with us, {{ user.firstname }}. We just sent you a confirmation email at <a> {{ user.email }} </a>, and we will send all mail to {{ user.street }}
+        </span>
+        <br>
+        <span>
+            Have a wonderful day!
+        </span>
+    </div>
+  <h2>Registration form</h2>
+  <form class="form-horizontal" #register="ngForm">
+  <!-- First Name -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="firstname">First Name:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="firstname" name="firstname"  required [(ngModel)]="user.firstname" #firstname="ngModel">
+        <p *ngIf='!firstname.valid'>Please enter valid Firstname</p>
+      </div>
+  </div>
+  <!-- Last Name -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="lastname" >Last Name:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="lastname" name="lastname" required [(ngModel)]="user.lastname" #lastname="ngModel">
+        <p *ngIf='!lastname.valid'>Please enter valid Lastname</p>
+      </div>
+  </div>
+  <!-- Email -->
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="user.email" #email="ngModel" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+      <p *ngIf='!email.valid'>Please enter valid Email</p>
+    </div>
+  </div>
+  <!-- Password -->
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <div class="col-sm-10">   
+      <input type="password" class="form-control" id="pwd" name="pwd" required [(ngModel)]="user.pwd" #pwd="ngModel"  pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$">
+      <p *ngIf='!pwd.valid'>Password must have atleast one(uppercase, lowercase, special charactor, number)</p>
+    </div>
+  </div>
+  <!-- Confirm Password -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="conf">Confirm Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="conf" name="conf" required [(ngModel)]="user.conf" #conf="ngModel">
+        <p *ngIf='user.pwd != user.conf'>Password and Confirm Password must match</p>
+      </div>
+    </div>
+  <!-- Street Address -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="street">Street Address:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="street" name="street" required [(ngModel)]="user.street" #street="ngModel">
+        <p *ngIf='!street.valid'>Street address required</p>
+      </div>
+  </div>
+  <!-- Apt -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="apt">Apt#:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="apt" name="apt" [(ngModel)]="user.apt" #apt="ngModel">
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="city">City:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="city" required name="city" [(ngModel)]="user.city" #city="ngModel">
+        <p *ngIf='!city.valid'>City required</p>
+      </div>
+  </div>
+  <!-- State -->
+  <div class="form-group">
+  <label class="control-label col-sm-2" for="state">State:</label>
+  <div class="col-sm-10">      
+  <select required name="state" id="state" class="form-control" type="text" [(ngModel)]="user.state" #state="ngModel">
+    <option *ngFor="let state of states">{{ state }}</option>
+  </select>
+  <p *ngIf='!state.valid'>State required</p>
+  </div>
+  </div>
+  <!-- Submit -->
+  <div class="form-group">        
+    <div class="col-sm-offset-2 col-sm-10">
+      <button (click)='bool = true' class="btn btn-default" [disabled]="register.invalid">Register</button>
+    </div>
+  </div>
+  </form>
+</div>
+</body>
+</html>
+

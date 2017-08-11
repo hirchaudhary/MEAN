@@ -1,0 +1,12 @@
+select{
+    width: 400px
+}
+input{
+    width: 500px
+}
+p{
+    color: red;
+}
+.green{
+    color: green
+}
