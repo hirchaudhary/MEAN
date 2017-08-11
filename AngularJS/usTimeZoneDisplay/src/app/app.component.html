@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body style="text-align:center">
+      <h1>US TimeZone Display</h1>
+        <button (click)='zone = 3' (click)='bool = true'>PST</button>
+        <button (click)='zone = 2' (click)='bool = true'>MST</button>
+        <button (click)='zone = 1' (click)='bool = true'>CST</button>
+        <button (click)='zone = 0' (click)='bool = true'>EST</button>
+        <button (click)='bool = false'>Clear</button>
+        <h3 *ngIf='bool'>{{time() | date:'medium'}}</h3>
+    </body>
+</html>
