@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SWiTcHbOaRd</title>
+
+</head>
+<body>
+  <div *ngFor='let switch of switches, let ind=index' class="outer">
+    <button (click)='changeOccured(ind)'  [ngClass]="{'on':switch.bool,'off':!switch.bool}">
+        {{switch.power}}
+    </button>
+  </div><br>
+</body>
+</html>
+
