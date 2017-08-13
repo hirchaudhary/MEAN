@@ -1,0 +1,11 @@
+.main{
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #a5c5f3;
+    width: 670px;
+    margin-left: 20px;
+    height: 600px;
+    padding: 20px;
+    border: 3px solid black;
+    font-family: Comic Sans MS, Comic Sans;
+}
