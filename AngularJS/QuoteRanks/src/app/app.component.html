@@ -1,0 +1,23 @@
+<div class="wrapper" >
+    <h1>Add A Quote</h1>
+    <form (submit)="submit()" id="quoteForm" name="quoteForm" #quoteForm=ngForm >
+      <table>
+        <tr>
+            <td><label for="text">Quote:</label></td>
+            <td><textarea required name="text" [(ngModel)]="quote.text" #text="ngModel"></textarea></td>
+            <td><span *ngIf='!text.valid'>Quote is required</span><br></td>
+      </tr>
+      <tr>
+        <td><label for="author">Author:</label></td>
+        <td><input type="text" required name="author" [(ngModel)]="quote.author" #author="ngModel"></td>
+        <td><span *ngIf='!author.valid'>Author is required</span></td>
+      </tr>
+      <tr>
+        <td rowspan="3"><button type="submit" [disabled]="!quoteForm.valid" >Add Quote</button></td>
+      </tr>
+      </table>
+    </form>
+
+    <h1>Quotes List</h1>
+    <app-quotes (emitter)="onDelete(ind)" [index]="ind" [quote]="quotes[ind]" *ngFor="let quote of quotes;let ind=index"></app-quotes>
+</div>

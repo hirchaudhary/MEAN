@@ -1,0 +1,9 @@
+.part{
+    width: 700px;
+    border: 3px solid black;
+    padding: 20px;
+}
+button{
+    width: 100px;
+    background-color: pink;
+}
