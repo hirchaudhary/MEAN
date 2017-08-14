@@ -1,0 +1,24 @@
+<h1 class="centerText">Github Score</h1>
+
+<form>
+    <label for="username">Username:</label>
+    <input type="text" name="username" [(ngModel)]="user.username">
+    <button type="submit" (click)="getUser()">Calculate Github Score</button>
+</form>
+
+<div *ngIf="!user.data">
+    <p>User not exist on github!</p>
+</div>
+
+<div *ngIf="user.data">
+    <h3>Name: {{user.data.name}}</h3>
+    <h3>Your Score: {{ user.score }}</h3>
+    <h3 *ngIf="user.score < 20" style="color:red">Need Work!</h3>
+    <h3 *ngIf="user.score < 50 && user.score >= 20" style="color:orange">A decent start!</h3>
+    <h3 *ngIf="user.score < 100 && user.score >= 50">Doing good!</h3>
+    <h3 *ngIf="user.score < 200 && user.score >= 100" style="color:green">Great job!</h3>
+    <h3 *ngIf="user.score >= 200" style="color:blue">Github Elite!</h3>
+    <p>Username: {{user.username}}</p>
+</div>
+
+
