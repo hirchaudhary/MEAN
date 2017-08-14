@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <h1>Initial Power Level: </h1>
+  <input type="number" name="power" min="1" max="100" [(ngModel)]="powerLevel" #power="ngModel">
+  <button (click)='human.calPowerLevel(); saiyan.calPowerLevel(); supersaiyan.calPowerLevel(); supersaiyantwo.calPowerLevel(); supersaiyanthree.calPowerLevel(); supersaiyanfour.calPowerLevel();'>Calculate Powers</button>
+  
+  <br>
+  <app-human #human [powerLevel] = "powerLevel"></app-human>
+  <app-saiyan #saiyan [powerLevel] = "powerLevel"></app-saiyan>
+  <app-super-saiyan #supersaiyan [powerLevel] = "powerLevel"></app-super-saiyan>
+  <app-super-saiyan-two #supersaiyantwo [powerLevel] = "powerLevel"></app-super-saiyan-two>
+  <app-super-saiyan-three #supersaiyanthree [powerLevel] = "powerLevel"></app-super-saiyan-three>
+  <app-super-saiyan-four #supersaiyanfour [powerLevel] = "powerLevel"></app-super-saiyan-four>
+</div>
