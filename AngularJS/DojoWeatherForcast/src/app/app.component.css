@@ -1,0 +1,17 @@
+.header{
+    width: 970px;
+    height: 150px;
+    background-color: lightgoldenrodyellow;
+    align-content: center;
+    text-align: center; 
+    padding: 20px;
+    padding-top: 50px; 
+    box-shadow: 5px 5px 5px burlywood;
+    margin: auto;
+}
+.wrapper{
+    text-align: center;
+    align-content: center;
+    margin: 0px;
+    font-family: Comic Sans MS, Comic Sans;
+}

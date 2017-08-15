@@ -1,0 +1,16 @@
+<div *ngIf="weather">
+  <h2>{{ weather.city.name }}</h2>
+  <blockquote>
+    <p><span>Humidity:</span> {{ weather.list[0].humidity }}</p>
+    <p><span>Temperature(Average):</span> {{ weather.list[0].temp.day }}</p>
+    <p><span>Temperature(High):</span> {{ weather.list[0].temp.max }} </p>
+    <p><span>Temperature(Low):</span> {{ weather.list[0].temp.min }}</p>
+    <p><span>Status:</span> {{ weather.list[0].weather[0].main }}</p>
+  </blockquote>
+  <img *ngIf="weather.city.name=='Seattle'" src="https://static.pexels.com/photos/37350/space-needle-seattle-washington-cityscape.jpg" alt="Image" />
+  <img *ngIf="weather.city.name=='San Jose'" src="https://static.pexels.com/photos/449608/pexels-photo-449608.jpeg" alt="Image" />
+  <img *ngIf="weather.city.name=='Burbank'" src="https://static.pexels.com/photos/258447/pexels-photo-258447.jpeg" alt="Image" />
+  <img *ngIf="weather.city.name=='Dallas'" src="https://static.pexels.com/photos/280193/pexels-photo-280193.jpeg" alt="Image" />
+  <img *ngIf="weather.city.name=='Washington'" src="https://static.pexels.com/photos/129112/pexels-photo-129112.jpeg" alt="Image" />
+  <img *ngIf="weather.city.name=='Chicago'" src="https://static.pexels.com/photos/167200/pexels-photo-167200.jpeg" alt="Image" />
+</div>
