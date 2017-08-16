@@ -4,7 +4,7 @@
 <form (submit)="addNote()" id="noteForm" name="noteForm" #noteForm=ngForm >
     <table>
     <tr>
-      <td><label for="content">content:</label></td>
+      <td><label for="content">Note:</label></td>
       <td><input type="text" required name="content" [(ngModel)]="note.content" #content="ngModel"></td>
       <td><span *ngIf='!content.valid'>Note is required</span></td>
     </tr>
