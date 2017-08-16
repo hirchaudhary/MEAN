@@ -1,0 +1,20 @@
+<h1>Anonymous Notes</h1>
+
+
+<form (submit)="addNote()" id="noteForm" name="noteForm" #noteForm=ngForm >
+    <table>
+    <tr>
+      <td><label for="content">content:</label></td>
+      <td><input type="text" required name="content" [(ngModel)]="note.content" #content="ngModel"></td>
+      <td><span *ngIf='!content.valid'>Note is required</span></td>
+    </tr>
+    <tr>
+      <td rowspan="3"><button type="submit" [disabled]="!noteForm.valid" >Add Note</button></td>
+    </tr>
+    </table>
+  </form>
+{{ note.content}}
+<div *ngFor="let note of notes">
+    <p>{{note.content}}</p>
+    <p>{{note.createdAt | date:'medium'}}</p>
+</div>
