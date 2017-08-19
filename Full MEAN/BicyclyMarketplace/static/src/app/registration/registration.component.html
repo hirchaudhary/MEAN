@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="head">
+            <h1>Bicycle Marketplace</h1>
+        </div>
+
+        <!-- login -->
+<div class="login">
+    <form (submit)="login()" class="form-horizontal" name="loginForm" #loginForm="ngForm">
+        <!-- Email -->
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="username">Email:</label>
+          <div class="col-sm-10">
+            <input type="username" class="form-control" id="username" name="username" required [(ngModel)]="loginUser.username" #username="ngModel">
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pass">Password:</label>
+          <div class="col-sm-10">   
+            <input type="pass" class="form-control" id="pass" name="pass" required [(ngModel)]="loginUser.pass" #pass="ngModel">
+          </div>
+        </div>
+        <!-- Submit -->
+      <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-default" [disabled]="!loginForm.valid" value="Login">
+          </div>
+        </div>
+    </form>
+    <p *ngIf='loginErr'>*{{ loginErr }}</p>
+</div>
+    </div>
+    
+
+    
+<div class="register">
+  
+  <form (submit)="addUser()" class="form-horizontal" name="userForm" #userForm="ngForm">
+  <!-- First Name -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="firstname">First Name:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="firstname" name="firstname"  required [(ngModel)]="user.firstname" #firstname="ngModel">
+        <p *ngIf='!firstname.valid'>Please enter valid Firstname</p>
+      </div>
+  </div>
+  <!-- Last Name -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="lastname" >Last Name:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="lastname" name="lastname" required [(ngModel)]="user.lastname" #lastname="ngModel">
+        <p *ngIf='!lastname.valid'>Please enter valid Lastname</p>
+      </div>
+  </div>
+  <!-- Email -->
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="user.email" #email="ngModel" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+      <p *ngIf='!email.valid'>Please enter valid Email</p>
+      <div *ngIf='errors'>
+          {{ errors.errors[0] }}
+        </div>
+    </div>
+  </div>
+  <!-- Password -->
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="password">Password:</label>
+    <div class="col-sm-10">   
+      <input type="password" class="form-control" id="password" name="password" required [(ngModel)]="user.password" #password="ngModel"  pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$">
+      <p *ngIf='!password.valid'>Password must have atleast one(uppercase, lowercase, special charactor, number)</p>
+    </div>
+  </div>
+  <!-- Confirm Password -->
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="conf">Confirm Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="conf" name="conf" required [(ngModel)]="user.conf" #conf="ngModel">
+        <p *ngIf='user.password != user.conf'>Password and Confirm Password must match</p>
+      </div>
+    </div>
+  <!-- Submit -->
+  <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" [disabled]="!userForm.valid || user.password != user.conf" class="btn btn-default" value="Register">
+      </div>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+
+<body>
+    <div class="header">
+        <h1>Bicycle Marketplace</h1>
+        <button [routerLink]="['/home']">Go Home</button>
+        <button [routerLink]="['/mylist']">My Listing</button>
+        <button (click)="logout()">Log off</button>
+    </div>
+    <!-- list of all your bicycles -->
+    <div class="search">
+        <div class="form">
+            <table>
+            <form (submit)="getSearch()" #searchForm="ngForm">
+                <tr>
+                    <td> <label for="content">Search:</label></td>
+                    <td><input class="content" type="text" name="content"  required [(ngModel)]="search.content" #content="ngModel"></td> 
+                    <td><input type="submit" class="button" [disabled]="!searchForm.valid" value="Search"></td>
+                </tr>
+                </form>
+            </table>
+          </div>
+    </div>
+    <div class="list">
+        <div *ngIf="bicycles">
+            <blockquote *ngFor="let bike of bicycles">
+                <h4>{{ bike.title }}</h4>
+                <p>Description: {{ bike.description }}</p>
+                <p><b>Price:</b> {{ bike.price }}</p>
+                <p><b>Location:</b> {{ bike.location}}</p>
+                <button *ngIf='user._id==bike._user' (click)='onDelete(bike._id)'>Delete</button>
+                <button *ngIf='user._id!=bike._user'>Contact</button>
+            </blockquote>
+        </div>
+        <div *ngIf="searchBicycles">
+            <blockquote *ngFor="let bike of searchBicycles">
+                <h4>{{ bike.title }}</h4>
+                <p>Description: {{ bike.description }}</p>
+                <p><b>Price:</b> {{ bike.price }}</p>
+                <p><b>Location:</b> {{ bike.location}}</p>
+                <button *ngIf='user._id==bike._user' (click)='onDelete(bike._id)'>Delete</button>
+                <button *ngIf='user._id!=bike._user'>Contact</button>
+            </blockquote>
+        </div>
+    </div>
+</body>
+

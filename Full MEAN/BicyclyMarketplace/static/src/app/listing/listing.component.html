@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="wrapper">
+        <div class="header">
+                <h1>Bicycle Marketplace</h1>
+                <button [routerLink]="['/home']">Go Home</button>
+                <button [routerLink]="['/mylist']">My Listing</button>
+                <button (click)="logout()">Log off</button>
+            </div>
+                        
+            <!-- list of all your bicycles -->
+            
+            <div class="list">
+                    <div *ngIf="bicycles">
+                        <blockquote *ngFor="let bike of bicycles">
+                            <h4>{{ bike.title }}</h4>
+                            <p>Description: {{ bike.description }}</p>
+                            <p><b>Price:</b> {{ bike.price }}</p>
+                            <p><b>Location:</b> {{ bike.location}}</p>
+                            <button (click)="onDelete(bike._id)">Delete</button>
+                            <button [routerLink]="['/editPage', bike._id]">Update</button>
+                        </blockquote>
+                    </div>
+                </div>
+            <div class="form">
+            <h3>Add Bicycle</h3>
+            <table>
+            <form (submit)="addBicycle()" #bicycleForm="ngForm">
+                <!-- Title -->
+                <tr>
+                    <td> <label for="title">Title:</label></td>
+                    <td><input type="text" name="title"  required [(ngModel)]="bicycle.title" #title="ngModel"></td>      
+                </tr>
+            
+            <!-- Description -->
+                <tr>
+                    <td><label for="description" >Description:</label></td>
+                    <td><textarea name="description" required [(ngModel)]="bicycle.description" #description="ngModel"></textarea></td>
+                </tr>
+                    
+            <!-- price -->
+                <tr>
+                    <td><label for="price">Price:</label></td>
+                    <td><input type="number" name="price" required [(ngModel)]="bicycle.price" #price="ngModel"></td>
+                </tr>
+            <!-- location -->
+                <tr>
+                    <td><label for="location">Location:</label></td>
+                    <td><input type="text" name="location" required [(ngModel)]="bicycle.location" #location="ngModel"></td>
+                </tr>
+            
+            <!-- Submit -->
+                <tr>
+                    <td></td>
+                    <td><input type="submit" [disabled]="!bicycleForm.valid" value="Add Bicycle"></td>
+                    
+                </tr>
+                
+                </form>
+            </table>
+            </div>
+
+</div>
+</body>
+</html>
