@@ -10,8 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { ListingComponent } from './listing/listing.component';
 import { EditbicycleComponent } from './editbicycle/editbicycle.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

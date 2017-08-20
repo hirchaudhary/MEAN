@@ -16,7 +16,6 @@ module.exports = {
             var user = new User(request.body)
             user.save(function(error) {
                 if(!error) {
-                    console.log('successfull!');
                     request.session.email = user.email;
                     request.session._id = user._id;
                     response.json(user);
@@ -45,26 +44,18 @@ module.exports = {
     },
 
     addBicycle: function(request, response) {
-        User.findOne({email: request.session.email}, function(error, user){
-            var bicycle = new Bicycle(request.body);
-            bicycle._user = user._id;
-            User.update({_id: user._id}, {$push: {'_bicycle': bicycle}}, function(error){})
-            bicycle.save(function(error){
-                if(error) {
-                    User.find({})
-                    .populate("_bicycle")
-                    .exec(function(errors,users){
-                        this.users = users;
-                    })
-                    response.json(bicycle);
-                }else{
-                    console.log(error);
-                    response.status(400).json(error);
-                }
-            })
+        var bicycle = new Bicycle(request.body);
+        bicycle._user = request.session._id;
+        bicycle.save(function(error){
+            User.findOneAndUpdate({ _id: request.session._id }, { $push: { _bicycle: bicycle }},function(error){}) 
+            if(error) {
+                response.json(error);
+            }else{
+                response.json(bicycle); 
+            } 
         })   
     },
-
+ 
     getUserBicycles: function(request, response) {
         Bicycle.find({_user:request.session._id}, function(error, bicycles) {
             if(!error) {
@@ -122,7 +113,8 @@ module.exports = {
     },
 
     getSearch:function(request, response){
-        Bicycle.find({$contains:{"title":request.body.content}}, function(error, bicycles){
+        console.log()
+        Bicycle.find({$text:{$search:`${request.body.content}`}}, function(error, bicycles){
             if(error) {
                 console.log(error);
             } else {
@@ -130,5 +122,15 @@ module.exports = {
                 response.json(bicycles);
             }
         }).sort({createdAt:-1});
+    },
+
+    getUser:function(request, response){
+        User.find({_id:request.session._id}, function(error, user){
+            if(error) {
+                console.log(error);
+            } else {
+                response.json(user);
+            }
+        })
     }
 }

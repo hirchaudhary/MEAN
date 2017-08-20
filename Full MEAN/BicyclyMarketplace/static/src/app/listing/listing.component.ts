@@ -25,7 +25,6 @@ export class ListingComponent implements OnInit {
   addBicycle(){
     this.bicycleService.addBicycle(this.bicycle)
     .then((bicycle)=>{
-        this.bicycle = null;
         this.router.navigate(['relist']);
     })
     .catch(err => {

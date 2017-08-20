@@ -16,7 +16,14 @@ export class HomeComponent implements OnInit {
   constructor(private bicycleService:BicycleService, private router: Router) { }
 
   ngOnInit() {
-    this.user = this.bicycleService.user;
+    this.bicycleService.getUser()
+    .then(user=> {
+      this.user = user;
+      console.log(this.user);
+      
+    })
+    .catch(err=> console.log(err))
+    
     this.bicycleService.getBicycles()
     .then(bicycles => {
       this.bicycles = bicycles;

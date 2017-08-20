@@ -4,18 +4,13 @@ import "rxjs";
 
 @Injectable()
 export class BicycleService {
-
+  
   constructor(private http:Http) { }
-
-  user = {}
 
   addUser(user) {
     return this.http.post(`/createUser`, user)
-    .map( (data: Response) => {
-      this.user = data.json()
+    .map( data => {
       data.json()
-      console.log(this.user);
-      
     } )
     .toPromise();
   }
@@ -23,15 +18,14 @@ export class BicycleService {
   login(user) {
     return this.http.post(`/login`, user)
     .map( data => {
-      this.user = data.json()
       data.json()
     })
     .toPromise();
   }
 
   addBicycle(bicycle) {
-    return this.http.put(`/addBicycle`, bicycle)
-    .map( (data: Response) => data.json() )
+    return this.http.post(`/addBicycle`, bicycle)
+    .map( data => data.json() )
     .toPromise();
   }
 
@@ -42,7 +36,6 @@ export class BicycleService {
   }
 
   logout(){
-    this.user = {}
     return this.http.get(`/logout`)
     .map( data => data.json() )
     .toPromise();
@@ -76,5 +69,11 @@ export class BicycleService {
     return this.http.post(`/getSearch`, search)
         .map(data => data.json())
         .toPromise();
+  }
+
+  getUser(){
+    return this.http.get('/getUser')
+    .map( data => data.json())
+    .toPromise();
   }
 }

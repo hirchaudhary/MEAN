@@ -21,7 +21,7 @@
           </div>
     </div>
     <div class="list">
-        <div *ngIf="bicycles">
+        <div *ngIf="bicycles.length>0 && searchBicycles.length<1" class="all">
             <blockquote *ngFor="let bike of bicycles">
                 <h4>{{ bike.title }}</h4>
                 <p>Description: {{ bike.description }}</p>
@@ -31,8 +31,8 @@
                 <button *ngIf='user._id!=bike._user'>Contact</button>
             </blockquote>
         </div>
-        <div *ngIf="searchBicycles">
-            <blockquote *ngFor="let bike of searchBicycles">
+        <div *ngIf="searchBicycles.length>0">
+            <blockquote *ngFor="let bike of searchBicycles" class="searched">
                 <h4>{{ bike.title }}</h4>
                 <p>Description: {{ bike.description }}</p>
                 <p><b>Price:</b> {{ bike.price }}</p>
