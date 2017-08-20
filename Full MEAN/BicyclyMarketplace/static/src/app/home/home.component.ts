@@ -19,8 +19,6 @@ export class HomeComponent implements OnInit {
     this.bicycleService.getUser()
     .then(user=> {
       this.user = user;
-      console.log(this.user);
-      
     })
     .catch(err=> console.log(err))
     
@@ -32,8 +30,9 @@ export class HomeComponent implements OnInit {
   }
 
   logout(){
-    this.bicycleService.logout();
-    this.router.navigate(['']);
+    this.bicycleService.logout()
+    .then(logout => this.router.navigate(['']))
+    .catch(err => console.log(err))
   }
 
   onDelete(id){

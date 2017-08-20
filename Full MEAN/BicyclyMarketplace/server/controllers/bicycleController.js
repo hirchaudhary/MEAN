@@ -67,7 +67,12 @@ module.exports = {
     },
 
     logout: function(request, response){
-        delete request.session;
+        console.log("hit")
+        if(request.session._id != null){
+            request.session._id = null;
+            request.session.email = null;
+            response.json("logged out")
+        }
     },
 
     delete:function(request,response){
@@ -113,19 +118,17 @@ module.exports = {
     },
 
     getSearch:function(request, response){
-        console.log()
         Bicycle.find({$text:{$search:`${request.body.content}`}}, function(error, bicycles){
             if(error) {
                 console.log(error);
             } else {
-                console.log(bicycles)
                 response.json(bicycles);
             }
         }).sort({createdAt:-1});
     },
 
     getUser:function(request, response){
-        User.find({_id:request.session._id}, function(error, user){
+        User.findOne({_id:request.session._id}, function(error, user){
             if(error) {
                 console.log(error);
             } else {

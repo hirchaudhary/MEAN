@@ -28,7 +28,7 @@
                 <p><b>Price:</b> {{ bike.price }}</p>
                 <p><b>Location:</b> {{ bike.location}}</p>
                 <button *ngIf='user._id==bike._user' (click)='onDelete(bike._id)'>Delete</button>
-                <button *ngIf='user._id!=bike._user'>Contact</button>
+                <button *ngIf='user._id!=bike._user' [routerLink]="['/contact, bike._id']">Contact</button>
             </blockquote>
         </div>
         <div *ngIf="searchBicycles.length>0">
@@ -38,7 +38,7 @@
                 <p><b>Price:</b> {{ bike.price }}</p>
                 <p><b>Location:</b> {{ bike.location}}</p>
                 <button *ngIf='user._id==bike._user' (click)='onDelete(bike._id)'>Delete</button>
-                <button *ngIf='user._id!=bike._user'>Contact</button>
+                <button *ngIf='user._id!=bike._user' [routerLink]="['/contact, bike._id']">Contact</button>
             </blockquote>
         </div>
     </div>

@@ -23,6 +23,11 @@ export class EditbicycleComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  logout(){
+    this.bicycleService.logout();
+    this.router.navigate(['']);
+  }
 
   editBicycle(){
     this.bicycleService.editBicycle(this.bicycle)
