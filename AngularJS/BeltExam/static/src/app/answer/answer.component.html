@@ -1,0 +1,34 @@
+<div class="header">
+    <h1>Bicycle Marketplace</h1>
+    <button [routerLink]="['/home']">Go Home</button>
+    <button (click)="logout()">Log off</button>
+  </div>
+  <div *ngIf='question'>
+    <h4>{{question.question}}</h4>
+    <h5>{{question.description}}</h5>
+  </div>
+  <div class="form">
+    <table>
+    <form (submit)="newAnswer(question._id)" #answerForm="ngForm">
+        <!-- Title -->
+        <tr>
+            <td><label for="answer">Answer:</label></td>
+            <td><input type="text" name="answer"  required minlength="5" [(ngModel)]="addAnswer.answer" #answer="ngModel"></td>   
+        </tr>
+    
+      <!-- Description -->
+        <tr>
+            <td><label for="description" >Supporting detail for your answer:</label></td>
+            <td><textarea name="description" [(ngModel)]="addAnswer.description" #description="ngModel"></textarea></td>
+        </tr>
+            
+      <!-- Submit -->
+        <tr>
+            <td></td>
+            <td><input type="submit" [disabled]="!answerForm.valid" value="Add Answer"></td>
+            
+        </tr>
+        
+        </form>
+    </table>
+  </div>

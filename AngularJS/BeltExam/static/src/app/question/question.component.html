@@ -1,0 +1,18 @@
+<div class="header">
+    <h1 *ngIf="user">Hi {{user.name}}</h1>
+    <button [routerLink]="['/gohome']">Add Question</button>
+    <button (click)="logout()">Log off</button>
+    <button [routerLink]="['/answer', question._id]">Answer</button>
+</div>
+
+<div *ngIf="question">
+    <h3>{{question.question}}</h3>
+    <h4>{{question.description}}</h4>
+    <blockquote *ngFor="let ans of answers">
+      <p>Answered By: {{ans.user}}</p>
+      <p>Answer: {{ans.answer}}</p>
+      <p *ngIf="ans.description">Description: {{ans.description}}</p>
+      <p>{{ans.likes }} likes</p>
+      <button (click)="increaseLikes(ans._id)">Like</button>
+    </blockquote>
+</div>
