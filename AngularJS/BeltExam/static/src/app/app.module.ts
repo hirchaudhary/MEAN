@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { AddquestionComponent } from './addquestion/addquestion.component';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
-
+import { CanActivate } from '@angular/router';
+import { LoginActivate } from './login-activate';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,13 +21,14 @@ import { AnswerComponent } from './answer/answer.component';
     QuestionComponent,
     AnswerComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule
   ],
-  providers: [BeltService],
+  providers: [BeltService, LoginActivate],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

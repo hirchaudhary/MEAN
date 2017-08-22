@@ -6,19 +6,27 @@ import "rxjs";
 export class BeltService {
   question;
   constructor(private http:Http) { }
+  user = "";
+  isLogin = false;
 
+  isLoggedIn(){
+    return this.isLogin;
+  }
   addUser(user) {
     return this.http.post(`/createUser`, user)
     .map( data => {
+      this.isLogin = true;
       data.json()
     } )
     .toPromise();
   }
 
-
   logout(){
     return this.http.get(`/logout`)
-    .map( data => data.json() )
+    .map( data => {
+      this.isLogin = false;
+      data.json()
+    } )
     .toPromise();
   }
 
